@@ -6,7 +6,7 @@ export const About = () => {
       <h1>Aboutページです</h1>
       <Link to="/about/1000">Url Parameter</Link>
       <br />
-      <Link to="/about/1000">Query Parameter</Link>
+      <Link to="/about/1000?name=hogehoge">Query Parameter</Link>
     </div>
   );
 };
