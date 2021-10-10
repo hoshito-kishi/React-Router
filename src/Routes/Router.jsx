@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router-dom";
 import { Home } from "../Home";
-import { About } from "../About";
+import { AboutRouter } from "./AboutRouter";
 import { ServiceRouter } from "./ServiceRouter";
 
 export const Router = () => {
@@ -9,9 +9,22 @@ export const Router = () => {
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/about">
-        <About />
-      </Route>
+      <Route
+        path="/about"
+        render={({ match: { url } }) => (
+          <Switch>
+            {AboutRouter.map((route) => (
+              <Route
+                key={route.path}
+                exact={route.exact}
+                path={`${url}${route.path}`}
+              >
+                {route.item}
+              </Route>
+            ))}
+          </Switch>
+        )}
+      />
       <Route
         path="/service"
         render={({ match: { url } }) => (
